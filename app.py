@@ -12,13 +12,8 @@ def index():
     images = []
     if request.method == 'POST':
         user_input = request.form['user_input']
-
         ai_image = AiImage()
-        ai_image.generate(prompt=user_input)
-
-        # Get 4 random images from the static/img directory
-        image_files = os.listdir('static/img')
-        images = random.sample(image_files, min(4, len(image_files)))
+        images = ai_image.generate(user_input)
     return render_template('index.html', user_input=user_input, images=images)
 
 if __name__ == '__main__':
