@@ -8,3 +8,8 @@ pip install python-dotenv
 pip install pillow
 pip install together
 ```
+
+## Run App
+```bash
+python app.py
+```
