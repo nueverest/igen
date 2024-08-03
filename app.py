@@ -18,7 +18,7 @@ def index():
 
         # Get 4 random images from the static/img directory
         image_files = os.listdir('static/img')
-        images = random.sample(image_files, min(6, len(image_files)))
+        images = random.sample(image_files, min(4, len(image_files)))
     return render_template('index.html', user_input=user_input, images=images)
 
 if __name__ == '__main__':
