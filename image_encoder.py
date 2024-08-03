@@ -9,10 +9,17 @@ from PIL import Image
 
 class ImageEncoder:
     def __init__(self, filename, image_data):
-        self.filename = filename + '-' + uuid.uuid4().hex
+        self.filename = filename + '-' + uuid.uuid4().hex + '.png'
         self.image_data = image_data
         current_dir = os.path.abspath('.')
-        self.path = os.path.join(current_dir,'images', 'igen', self.filename + '.png')        
+        self.folder_path = os.path.join(current_dir, 'static', 'img')
+        try:
+            # Check if the folder exists, if not, create one
+            if not os.path.exists(self.folder_path):
+                os.makedirs(self.folder_path)
+        except Exception as e:
+            print(f"An error occurred: {e}")
+        self.path = os.path.join(self.folder_path, self.filename)
 
     def encode_image(self):
         decoded_data = base64.b64decode(self.image_data)
@@ -30,4 +37,7 @@ class ImageEncoder:
     def convert_to_png(self):
         decoded_data = base64.b64decode(self.image_data)
         image = Image.open(io.BytesIO(decoded_data))
+
+        # resize to 2 by 2 inches
+        image = image.resize((2*300, 2*300))
         image.save(self.path, "PNG")
