@@ -3,7 +3,7 @@
 ```bash
 python -m venv venv
 source venv/bin/activate
-``  
+```  
 
 ```bash
 python -m pip install --upgrade pip
