@@ -22,19 +22,31 @@
 <body>
     <div class="container">
         <h1><img src="static/logo.png" alt="My Website Logo", class="logo">Welcome to the Flask App</h1>
-        <form method="POST">
-            <input type="text" name="user_input" placeholder="Enter your text here" required>
-            <button type="submit">Submit</button>
+        <form action="/" method="POST">
+            <input type="submit" name="action" value="Minecraft">
+            <input type="submit" name="action" value="GTA">
+            <input type="submit" name="action" value="Fornite">
+            <input type="submit" name="action" value="League of Legends">
+            <input type="submit" name="action" value="Man">
+            <input type="submit" name="action" value="Woman">
+            <input type="submit" name="action" value="Animal">
+            <input type="submit" name="action" value="Plant">
+            <input type="submit" name="action" value="Vehicle">
+            <input type="submit" name="action" value="Star Wars">
+            <input type="submit" name="action" value="Barbie">
+            <input type="submit" name="action" value="Sculpture">
+            <input type="submit" name="action" value="World of Warcraft">
+            <input type="submit" name="action" value="Funny">
         </form>
         {% if user_input %}
             <div class="result">
-                <h2>You entered:</h2>
+                <h2>You selected:</h2>
                 <p>{{ user_input }}</p>
             </div>
         {% endif %}
         {% if images %}
             <div class="images">
-                <h2>Random Images:</h2>
+                <h2>Generated Images:</h2>
                 {% for image in images %}
                     <img src="{{ url_for('static', filename='img/' + image) }}" alt="Random Image">
                 {% endfor %}
