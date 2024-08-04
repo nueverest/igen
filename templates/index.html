@@ -5,10 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flask App</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <style>
+        .logo {
+            vertical-align: center; /* Aligns the logo vertically in the middle of the text */
+            justify-content: space-between;
+            height: 80px; /* Adjust the height as needed */
+            margin-right: 30px;
+        }
+        h1 {
+            display: flex;
+            align-items: center;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to the Flask App</h1>
+        <h1><img src="static/logo.png" alt="My Website Logo", class="logo">Welcome to the Flask App</h1>
         <form method="POST">
             <input type="text" name="user_input" placeholder="Enter your text here" required>
             <button type="submit">Submit</button>
