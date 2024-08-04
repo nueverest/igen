@@ -3,15 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask App</title>
+    <title>igen</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to the Flask App</h1>
+        <h1>iGen</h1>
+        <h3>Simple Image Generation</h3>
+        
         <form method="POST">
-            <input type="text" name="user_input" placeholder="Enter your text here" required>
-            <button type="submit">Submit</button>
+            {% for key, values in grid.items() %}
+            <h2>{{ key }}</h2>
+            <div class="grid">                 
+                {% for value in values %}
+                <div class="cell">
+                    {# <label for="{{ value.id }}">{{ value.name }}</label><br> #}
+                    <button id="{{ value.id }}" type="button" class="toggle-btn" onclick="toggleValue('{{ value.id }}')">
+                        {{ value.name }}
+                    </button>
+                    <input type="hidden" id="input{{ value.id }}" name="action" value="{{ value.selected }}">
+                </div>
+                {% endfor %}                
+            </div>
+            {% endfor %}
+            <button type="submit" class="submit-btn">Submit</button>
         </form>
         {% if user_input %}
             <div class="result">
@@ -21,12 +36,26 @@
         {% endif %}
         {% if images %}
             <div class="images">
-                <h2>Random Images:</h2>
+                <h2>AI Generated Images:</h2>
                 {% for image in images %}
-                    <img src="{{ url_for('static', filename='img/' + image) }}" alt="Random Image">
+                    <img src="{{ url_for('static', filename='img/' + image) }}" alt="AI Generated Image">
                 {% endfor %}
             </div>
         {% endif %}
     </div>
+
+    <script>
+        function toggleValue(id) {
+            var input = document.getElementById(id);
+            
+            input.classList.toggle("selected")
+            
+            if(input.value === 'True') {
+                input.value = 'False';
+            } else {
+                input.value = 'True';
+            }             
+        }
+    </script>
 </body>
 </html>
