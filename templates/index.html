@@ -37,7 +37,7 @@
         </form>
         {% if user_input %}
             <div class="result">
-                <h2>You entered:</h2>
+                <h2>You selected:</h2>
                 <p>{{ user_input }}</p>
             </div>
         {% endif %}
@@ -45,8 +45,8 @@
             <div class="images">
                 <h2>Generated Images:</h2>
                 {% for image in images %}
-                <img src="{{ url_for('static', filename='img/' + image) }}" alt="Random Image">
-                <button onclick="saveImage(this)" data-url="{{ url_for('static', filename='img/' + image) }}">Save Image</button>
+                <div class="image-item"> <img src="{{ url_for('static', filename='img/' + image) }}" alt="Random Image">
+                    <button onclick="saveImage(this)" data-url="{{ url_for('static', filename='img/' + image) }}">Save Image</button></div>
             {% endfor %}
 
             </div>

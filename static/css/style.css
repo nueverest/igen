@@ -13,6 +13,7 @@ body {
     padding: 20px;
 }
 
+
 h1 {
     color: #333;
 }
@@ -40,6 +41,22 @@ button {
 button:hover {
     background: #555;
 }
+
+.images {
+    display: flex; /* 启用 flexbox */
+    flex-wrap: wrap; /* 允许多行显示 */
+    justify-content: space-around; /* 在主轴上平均分布 */
+    align-items: flex-start; /* 在交叉轴上对齐到顶部 */
+}
+
+
+.image-item {
+    display: flex; /* 使图片和按钮垂直排列 */
+    flex-direction: column; /* 垂直堆叠 */
+    align-items: center; /* 中心对齐子元素 */
+    margin: 10px; /* 添加一些外边距 */
+}
+
 
 .result, .images {
     background: #fff;
@@ -69,59 +86,9 @@ button:hover {
 }
 
 .greenButton {
-    background: #459880; /* Custom green color for upload button
+    background: #459880;
 }
 
 .blueButton {
-    background: #3b83f0; /* Custom blue color for save button
-}
-
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 20px;
-}
-.cell {
-    background-color: #f0f0f0;
-    padding: 15px;
-    border-radius: 5px;
-    text-align: center;
-}
-.toggle-btn {
-    background-color: gray;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-}
-.selected {
-    background-color: #4ebb54;
-}
-.toggle-btn:hover {
-    background-color: #45a049;
-}
-.submit-btn {
-    background-color: #007bff;
-    border: none;
-    color: white;
-    padding: 12px 24px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 18px;
-    margin-top: 50px;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-}
-.submit-btn:hover {
-    background-color: #0056b3;
-}
+    background: #3b83f0;
+} 
