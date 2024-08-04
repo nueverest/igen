@@ -48,7 +48,7 @@
                 <img src="{{ url_for('static', filename='img/' + image) }}" alt="Random Image">
                 <button onclick="saveImage(this)" data-url="{{ url_for('static', filename='img/' + image) }}">Save Image</button>
             {% endfor %}
-            
+
             </div>
         {% endif %}
         <button class="greenButton" onclick="document.getElementById('file-input').click();">Upload Image</button>

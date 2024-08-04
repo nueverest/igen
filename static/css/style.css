@@ -69,9 +69,59 @@ button:hover {
 }
 
 .greenButton {
-    background: #459880; /* Custom green color for upload button 
+    background: #459880; /* Custom green color for upload button
 }
 
 .blueButton {
-    background: #3b83f0; /* Custom blue color for save button 
-} 
+    background: #3b83f0; /* Custom blue color for save button
+}
+
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+}
+.cell {
+    background-color: #f0f0f0;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+}
+.toggle-btn {
+    background-color: gray;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+.selected {
+    background-color: #4ebb54;
+}
+.toggle-btn:hover {
+    background-color: #45a049;
+}
+.submit-btn {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    margin-top: 50px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+.submit-btn:hover {
+    background-color: #0056b3;
+}
