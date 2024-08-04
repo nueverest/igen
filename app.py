@@ -11,29 +11,22 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    options = Options()
-    grid = options.grid
-
-    user_input = ''
-    images = []    
+    # if request.method == 'POST':
+    #     topics = [
+    #         'Man', 'Woman', 'Animal', 'Plant', 'Vehicle',
+    #         'Star Wars', 'Barbie', 'Anime', 'Matrix', 'Avengers',
+    #         'Photo', 'Sculpture', 'Painting', 'Sketch', 'Carving',
+    #         'Minecraft', 'GTA', 'Fornite', 'League of Legends', 'World of Warcraft',
+    #         'Funny', 'Somber', 'Still', 'Happy', 'Relaxed',
+    #     ]
+    button_pressed = ""
+    images = []
     if request.method == 'POST':
-        topics = [
-            'Man', 'Woman', 'Animal', 'Plant', 'Vehicle',
-            'Star Wars', 'Barbie', 'Anime', 'Matrix', 'Avengers', 
-            'Photo', 'Sculpture', 'Painting', 'Sketch', 'Carving',
-            'Minecraft', 'GTA', 'Fornite', 'League of Legends', 'World of Warcraft', 
-            'Funny', 'Somber', 'Still', 'Happy', 'Relaxed',
-        ]
-
-        user_inputs = []
-        for topic in topics:
-            # print(request.form[topic])
-            user_inputs.append(request.form[topic])
-        
-        user_input = options.generate_prompt(user_request_form=user_inputs)
-        # ai_image = AiImage()
-        # images = ai_image.generate(user_input)
-    return render_template('index.html', grid=grid, user_input=user_input, images=images)
+        button_pressed = request.form.get('action')
+        if button_pressed:
+            ai_image = AiImage()
+            images = ai_image.generate(button_pressed)
+    return render_template('index.html', user_input=button_pressed, images=images)
 
 
 @app.route('/text', methods=['GET', 'POST'])

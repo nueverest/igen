@@ -3,59 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>igen</title>
+    <title>Flask App</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <style>
+        .logo {
+            vertical-align: center; /* Aligns the logo vertically in the middle of the text */
+            justify-content: space-between;
+            height: 80px; /* Adjust the height as needed */
+            margin-right: 30px;
+        }
+        h1 {
+            display: flex;
+            align-items: center;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>iGen</h1>
-        <h3>Simple Image Generation</h3>
-        
-        <form method="POST">
-            {% for key, values in grid.items() %}
-            <h2>{{ key }}</h2>
-            <div class="grid">                 
-                {% for value in values %}
-                <div class="cell">
-                    {# <label for="{{ value.id }}">{{ value.name }}</label><br> #}
-                    <button id="{{ value.id }}" type="button" class="toggle-btn" onclick="toggleValue('{{ value.id }}')">
-                        {{ value.name }}
-                    </button>
-                    <input type="hidden" id="input{{ value.id }}" name="action" value="{{ value.selected }}">
-                </div>
-                {% endfor %}                
-            </div>
-            {% endfor %}
-            <button type="submit" class="submit-btn">Submit</button>
+        <h1><img src="static/logo.png" alt="My Website Logo", class="logo">Welcome to the Flask App</h1>
+        <form action="/" method="POST">
+            <input type="submit" name="action" value="Minecraft">
+            <input type="submit" name="action" value="GTA">
+            <input type="submit" name="action" value="Fornite">
+            <input type="submit" name="action" value="League of Legends">
+            <input type="submit" name="action" value="Man">
+            <input type="submit" name="action" value="Woman">
+            <input type="submit" name="action" value="Animal">
+            <input type="submit" name="action" value="Plant">
+            <input type="submit" name="action" value="Vehicle">
+            <input type="submit" name="action" value="Star Wars">
+            <input type="submit" name="action" value="Barbie">
+            <input type="submit" name="action" value="Sculpture">
+            <input type="submit" name="action" value="World of Warcraft">
+            <input type="submit" name="action" value="Funny">
         </form>
         {% if user_input %}
             <div class="result">
-                <h2>You entered:</h2>
+                <h2>You selected:</h2>
                 <p>{{ user_input }}</p>
             </div>
         {% endif %}
         {% if images %}
             <div class="images">
-                <h2>AI Generated Images:</h2>
+                <h2>Generated Images:</h2>
                 {% for image in images %}
-                    <img src="{{ url_for('static', filename='img/' + image) }}" alt="AI Generated Image">
+                    <img src="{{ url_for('static', filename='img/' + image) }}" alt="Random Image">
                 {% endfor %}
             </div>
         {% endif %}
     </div>
-
-    <script>
-        function toggleValue(id) {
-            var input = document.getElementById(id);
-            
-            input.classList.toggle("selected")
-            
-            if(input.value === 'True') {
-                input.value = 'False';
-            } else {
-                input.value = 'True';
-            }             
-        }
-    </script>
 </body>
 </html>
