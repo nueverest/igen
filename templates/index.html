@@ -43,7 +43,7 @@
         {% endif %}
         {% if images %}
             <div class="images">
-                <h2>Random Images:</h2>
+                <h2>Generated Images:</h2>
                 {% for image in images %}
                 <img src="{{ url_for('static', filename='img/' + image) }}" alt="Random Image">
                 <button onclick="saveImage(this)" data-url="{{ url_for('static', filename='img/' + image) }}">Save Image</button>
