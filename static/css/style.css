@@ -13,6 +13,7 @@ body {
     padding: 20px;
 }
 
+
 h1 {
     color: #333;
 }
@@ -40,6 +41,22 @@ button {
 button:hover {
     background: #555;
 }
+
+.images {
+    display: flex; /* 启用 flexbox */
+    flex-wrap: wrap; /* 允许多行显示 */
+    justify-content: space-around; /* 在主轴上平均分布 */
+    align-items: flex-start; /* 在交叉轴上对齐到顶部 */
+}
+
+
+.image-item {
+    display: flex; /* 使图片和按钮垂直排列 */
+    flex-direction: column; /* 垂直堆叠 */
+    align-items: center; /* 中心对齐子元素 */
+    margin: 10px; /* 添加一些外边距 */
+}
+
 
 .result, .images {
     background: #fff;
@@ -69,9 +86,9 @@ button:hover {
 }
 
 .greenButton {
-    background: #459880; /* Custom green color for upload button 
+    background: #459880; 
 }
 
 .blueButton {
-    background: #3b83f0; /* Custom blue color for save button 
+    background: #3b83f0; 
 } 
