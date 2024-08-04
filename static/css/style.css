@@ -70,6 +70,10 @@ button:hover {
     margin: 10px;
 }
 
+.prompt-button {
+    margin-top: 10px;
+}
+
 .greenButton, .blueButton {
     padding: 10px 20px;
     margin: 5px;
