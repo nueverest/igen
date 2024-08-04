@@ -17,14 +17,13 @@ def index():
     #         'Minecraft', 'GTA', 'Fornite', 'League of Legends', 'World of Warcraft',
     #         'Funny', 'Somber', 'Still', 'Happy', 'Relaxed',
     #     ]
-    button_pressed = ""
+    user_input = ''
     images = []
     if request.method == 'POST':
-        button_pressed = request.form.get('action')
-        if button_pressed:
-            ai_image = AiImage()
-            images = ai_image.generate(button_pressed)
-    return render_template('index.html', user_input=button_pressed, images=images)
+        user_input = request.form['user_input']
+        ai_image = AiImage()
+        images = ai_image.generate(user_input)
+    return render_template('index.html', user_input=user_input, images=images)
 
 
 @app.route('/text', methods=['GET', 'POST'])
