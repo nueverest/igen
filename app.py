@@ -39,17 +39,14 @@ def upload_file():
             os.makedirs(upload_path)
     except Exception as e:
         print(f"An error occurred: {e}")
-    file_path = os.path.join(upload_path, file.name)
+    file_path = os.path.join(upload_path, file.filename)
     print("here is file path ", file_path)
     file.save(file_path + '.png')
-    ai_image = AiImage()
 
-    path = "static/upload/" + file.name
-    generate_file_path = urljoin("http://127.0.0.1:5000/", path)
-    print("here is generate file path ", generate_file_path)
-    images = ai_image.generate(generate_file_path)
+    path = "static/upload/" + file.filename
+    images = AiImage(path)
 
-    flash('File successfully uploaded')
+    #TODO: call new ai api, path should be the input
     return render_template('index.html', images=images)
 
 @app.route('/upload_form')
