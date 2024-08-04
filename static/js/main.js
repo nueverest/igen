@@ -22,6 +22,7 @@ document.getElementById('imageForm').addEventListener('submit', function(event) 
             imgElement.src = imageUrl;
             imagesContainer.appendChild(imgElement);
         });
+        console.log("!11111");
     })
     .catch(error => console.log('Error:', error));
 });
