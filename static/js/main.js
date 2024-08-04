@@ -1,22 +1,31 @@
-// Function to apply a filter and fetch a generated image
-function fetchFilteredImage(filterName) {
-    const formData = new FormData();
-    formData.append('filter', filterName); // Append the selected filter name
+// Assuming there's a form with id 'imageForm' and an input with id 'user_input'
+document.getElementById('imageForm').addEventListener('submit', function(event) {
+    event.preventDefault();  // Prevent the form from submitting the traditional way
 
-    fetch('/generate-image', {
+    let userInput = document.getElementById('user_input').value;
+
+    fetch('/', {
         method: 'POST',
-        body: formData
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `user_input=${encodeURIComponent(userInput)}`
     })
     .then(response => response.json())
     .then(data => {
-        if (data.url) {
-            document.getElementById('preview-img').src = data.url; // Update the preview image
-        } else {
-            alert('Failed to generate filtered image.');
-        }
+        // Handle the response data, i.e., display images
+        const imagesContainer = document.getElementById('imagesContainer');
+        imagesContainer.innerHTML = '';  // Clear previous images
+
+        data.images.forEach(imageUrl => {
+            let imgElement = document.createElement('img');
+            imgElement.src = imageUrl;
+            imagesContainer.appendChild(imgElement);
+        });
     })
-    .catch(error => console.error('Error:', error));
-}
+    .catch(error => console.log('Error:', error));
+});
+
 
 // Function to save the generated image
 function saveImage() {

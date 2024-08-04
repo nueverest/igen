@@ -9,49 +9,34 @@
 <body>
     <div class="container">
         <h1>iGen Playground</h1>
-        <div class="image-upload-area">
-            <button class="greenButton" onclick="document.getElementById('file-input').click();">Upload Image</button>
-            <input type="file" id="file-input" style="display: none;" onchange="previewFile()">
+        <div class="left-panel">
+            <div class="image-upload-area">
+                <button class="greenButton" onclick="document.getElementById('file-input').click();">Upload Image</button>
+                <button class="blueButton" onclick="saveImage()">Save Image</button>
+                <input type="file" id="file-input" style="display: none;" onchange="previewFile()">
+            </div>
+            <div class="image-display-area">
+                <img id="preview-img" src="" alt="Image preview...">
+            </div>
         </div>
-        <div class="image-display-area">
-            <img id="preview-img" src="" alt="Image preview...">
+       
+        <div class="prompt-container">
+            <!-- 为每个图像生成主题设置一个按钮 -->
+            <button class="prompt-button" data-prompt="Mystical forest night scene">Mystical Forest Night Scene</button>
+            <button class="prompt-button" data-prompt="Futuristic city skyline">Futuristic City Skyline</button>
+            <button class="prompt-button" data-prompt="Underwater coral reef landscape">Underwater Coral Reef</button>
+            <button class="prompt-button" data-prompt="Ancient castle at sunset">Ancient Castle at Sunset</button>
         </div>
-        <div class="filter-area">
-            <!-- Theme 1 -->
-            <div class="theme-row">
-                <img class="filter-image" src="/static/images/style1.jpg" alt="Style 1-1">
-                <img class="filter-image" src="/static/images/style1.jpg" alt="Style 1-2">
-                <img class="filter-image" src="/static/images/style1.jpg" alt="Style 1-3">
-                <img class="filter-image" src="/static/images/style1.jpg" alt="Style 1-4">
-                <img class="filter-image" src="/static/images/style1.jpg" alt="Style 1-5">
-            </div>
-            <!-- Theme 2 -->
-            <div class="theme-row">
-                <img class="filter-image" src="/static/images/style2.jpg" alt="Style 2-1">
-                <img class="filter-image" src="/static/images/style2.jpg" alt="Style 2-2">
-                <img class="filter-image" src="/static/images/style2.jpg" alt="Style 2-3">
-                <img class="filter-image" src="/static/images/style2.jpg" alt="Style 2-4">
-                <img class="filter-image" src="/static/images/style2.jpg" alt="Style 2-5">
-            </div>
-            <!-- Theme 3 -->
-            <div class="theme-row">
-                <img class="filter-image" src="/static/images/style3.jpg" alt="Style 3-1">
-                <img class="filter-image" src="/static/images/style3.jpg" alt="Style 3-2">
-                <img class="filter-image" src="/static/images/style3.jpg" alt="Style 3-3">
-                <img class="filter-image" src="/static/images/style3.jpg" alt="Style 3-4">
-                <img class="filter-image" src="/static/images/style3.jpg" alt="Style 3-5">
-            </div>
-            <!-- Theme 4 -->
-            <div class="theme-row">
-                <img class="filter-image" src="/static/images/style4.jpg" alt="Style 4-1">
-                <img class="filter-image" src="/static/images/style4.jpg" alt="Style 4-2">
-                <img class="filter-image" src="/static/images/style4.jpg" alt="Style 4-3">
-                <img class="filter-image" src="/static/images/style4.jpg" alt="Style 4-4">
-                <img class="filter-image" src="/static/images/style4.jpg" alt="Style 4-5">
-            </div>
+
+        <form id="imageForm">
+            <input type="text" id="user_input" name="user_input" placeholder="Enter prompt">
+            <button type="submit">Generate Images</button>
+        </form>
+        <div id="imagesContainer">
+            <!-- Images will be displayed here -->
         </div>
         
-        <button class="blueButton" onclick="saveImage()">Save Image</button>
+       
     </div>
 
     <script src="/static/js/main.js"></script>
