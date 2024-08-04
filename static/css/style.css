@@ -52,3 +52,33 @@ button:hover {
     height: auto;
     margin: 10px;
 }
+
+body, html {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+}
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.image-upload-area, .image-display-area, .filter-area {
+    margin-bottom: 20px;
+}
+
+.filter-button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+#preview-img {
+    width: 100%; /* Adjust based on your layout */
+    height: auto;
+}

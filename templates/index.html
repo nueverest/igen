@@ -1,8 +1,9 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     <title>Flask App</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
@@ -28,5 +29,34 @@
             </div>
         {% endif %}
     </div>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iGen Playground</title>
+    <link rel="stylesheet" href="/static/css/style.css"> 
+</head>
+<body>
+    <div class="container">
+        <h1>iGen Playground</h1>
+        <div class="image-upload-area">
+            <button onclick="document.getElementById('file-input').click();">Upload Image</button>
+            <input type="file" id="file-input" style="display: none;" onchange="previewFile()">
+        </div>
+        <div class="image-display-area">
+            <img id="preview-img" src="" alt="Image preview...">
+        </div>
+        <div class="filter-area">
+            <button class="filter-button">Cinematic Vibes</button>
+            <button class="filter-button">Video Games</button>
+            <!-- Add more filter buttons as needed -->
+        </div>
+        <button onclick="saveImage()">Save Image</button>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
