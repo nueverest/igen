@@ -3,30 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask App</title>
+    <title>IGEN</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to the Flask App</h1>
-        <form method="POST">
-            <input type="text" name="user_input" placeholder="Enter your text here" required>
-            <button type="submit">Submit</button>
-        </form>
-        {% if user_input %}
-            <div class="result">
-                <h2>You entered:</h2>
-                <p>{{ user_input }}</p>
-            </div>
-        {% endif %}
-        {% if images %}
-            <div class="images">
-                <h2>Random Images:</h2>
-                {% for image in images %}
-                    <img src="{{ url_for('static', filename='img/' + image) }}" alt="Random Image">
-                {% endfor %}
-            </div>
-        {% endif %}
+        <h1>Welcome to the igen App</h1>
     </div>
+
+    <h1>Upload a File</h1>
+    <form method="POST" action="/upload" enctype="multipart/form-data">
+      <input type="file" name="file">
+      <input type="submit" value="Upload">
+    </form>
+    {% if images %}
+        <div class="images">
+            <h2>Random Images:</h2>
+            {% for image in images %}
+                <img src="{{ url_for('static', filename='img/' + image) }}" alt="Random Image">
+            {% endfor %}
+        </div>
+    {% endif %}
 </body>
 </html>
