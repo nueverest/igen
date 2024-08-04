@@ -3,42 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iGen Playground</title>
-    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Flask App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <div class="container">
         <h1>iGen Playground</h1>
-        <div class="left-panel">
-            <div class="image-upload-area">
-                <button class="greenButton" onclick="document.getElementById('file-input').click();">Upload Image</button>
-                <button class="blueButton" onclick="saveImage()">Save Image</button>
-                <input type="file" id="file-input" style="display: none;" onchange="previewFile()">
-            </div>
-            <div class="image-display-area">
-                <img id="preview-img" src="" alt="Image preview...">
-            </div>
-        </div>
-       
-        <div class="prompt-container">
-            <!-- 为每个图像生成主题设置一个按钮 -->
-            <button class="prompt-button" data-prompt="Mystical forest night scene">Mystical Forest Night Scene</button>
-            <button class="prompt-button" data-prompt="Futuristic city skyline">Futuristic City Skyline</button>
-            <button class="prompt-button" data-prompt="Underwater coral reef landscape">Underwater Coral Reef</button>
-            <button class="prompt-button" data-prompt="Ancient castle at sunset">Ancient Castle at Sunset</button>
-        </div>
-
-        <form id="imageForm">
-            <input type="text" id="user_input" name="user_input" placeholder="Enter prompt">
-            <button type="submit">Generate Images</button>
+        <form method="POST" id="promptForm">
+            <input type="hidden" name="user_input" id="userInput">
+            <button type="button" class="prompt-button" data-prompt="Mystical forest night scene" onclick="submitPrompt(this)">Mystical Forest Night Scene</button>
+            <button type="button" class="prompt-button" data-prompt="Futuristic city skyline" onclick="submitPrompt(this)">Futuristic City Skyline</button>
+            <button type="button" class="prompt-button" data-prompt="Underwater coral reef landscape" onclick="submitPrompt(this)">Underwater Coral Reef</button>
+            <button type="button" class="prompt-button" data-prompt="Ancient castle at sunset" onclick="submitPrompt(this)">Ancient Castle at Sunset</button>
         </form>
-        <div id="imagesContainer">
-            <!-- Images will be displayed here -->
-        </div>
-        
-       
+        {% if user_input %}
+            <div class="result">
+                <h2>You entered:</h2>
+                <p>{{ user_input }}</p>
+            </div>
+        {% endif %}
+        {% if images %}
+            <div class="images">
+                <h2>Random Images:</h2>
+                {% for image in images %}
+                <img src="{{ url_for('static', filename='img/' + image) }}" alt="Random Image">
+                <button onclick="saveImage(this)" data-url="{{ url_for('static', filename='img/' + image) }}">Save Image</button>
+            {% endfor %}
+            
+            </div>
+        {% endif %}
+        <button class="greenButton" onclick="document.getElementById('file-input').click();">Upload Image</button>
     </div>
 
     <script src="/static/js/main.js"></script>
+    <script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.prompt-button').forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault(); // 防止默认的表单提交
+            let userInput = this.getAttribute('data-prompt');
+            document.getElementById('userInput').value = userInput; // 设置隐藏字段的值
+            document.getElementById('promptForm').submit(); // 提交表单
+        });
+    });
+});
+        function submitPrompt(button) {
+            var userInput = button.getAttribute('data-prompt');
+            document.getElementById('userInput').value = userInput;
+            document.getElementById('promptForm').submit();
+        }
+
+        function saveImage(button) {
+             var imageUrl = button.getAttribute('data-url'); // 从按钮的 data-url 属性获取图片 URL
+             var link = document.createElement('a');
+            link.href = imageUrl;
+            link.download = imageUrl.split('/').pop(); // 从 URL 提取文件名作为下载名称
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+}
+
+    </script>
 </body>
 </html>
