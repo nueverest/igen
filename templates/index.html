@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask App</title>
+    <title>iGen</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <style>
@@ -21,22 +21,19 @@
 </head>
 <body>
     <div class="container">
-        <h1><img src="static/logo.png" alt="My Website Logo", class="logo">Welcome to the Flask App</h1>
-        <form action="/" method="POST">
-            <input type="submit" name="action" value="Minecraft">
-            <input type="submit" name="action" value="GTA">
-            <input type="submit" name="action" value="Fornite">
-            <input type="submit" name="action" value="League of Legends">
-            <input type="submit" name="action" value="Man">
-            <input type="submit" name="action" value="Woman">
-            <input type="submit" name="action" value="Animal">
-            <input type="submit" name="action" value="Plant">
-            <input type="submit" name="action" value="Vehicle">
-            <input type="submit" name="action" value="Star Wars">
-            <input type="submit" name="action" value="Barbie">
-            <input type="submit" name="action" value="Sculpture">
-            <input type="submit" name="action" value="World of Warcraft">
-            <input type="submit" name="action" value="Funny">
+        <h1><img src="static/logo.png" alt="My Website Logo", class="logo">iGen Playground</h1>
+        <form method="POST" id="promptForm">
+            <input type="hidden" name="user_input" id="userInput">
+            <button type="button" class="prompt-button" data-prompt="Mystical forest night scene" onclick="submitPrompt(this)">Mystical Forest Night Scene</button>
+            <button type="button" class="prompt-button" data-prompt="Futuristic city skyline" onclick="submitPrompt(this)">Futuristic City Skyline</button>
+            <button type="button" class="prompt-button" data-prompt="Underwater coral reef landscape" onclick="submitPrompt(this)">Underwater Coral Reef</button>
+            <button type="button" class="prompt-button" data-prompt="Ancient castle at sunset" onclick="submitPrompt(this)">Ancient Castle at Sunset</button>
+            <button type="button" class="prompt-button" data-prompt="League of Legends" onclick="submitPrompt(this)">League of Legends</button>
+            <button type="button" class="prompt-button" data-prompt="World of Warcraft" onclick="submitPrompt(this)">World of Warcraft</button>
+            <button type="button" class="prompt-button" data-prompt="Star Wars" onclick="submitPrompt(this)">Star Wars</button>
+            <button type="button" class="prompt-button" data-prompt="Fornite" onclick="submitPrompt(this)">Fornite</button>
+            <button type="button" class="prompt-button" data-prompt="Minecraft" onclick="submitPrompt(this)">Minecraft</button>
+            <button type="button" class="prompt-button" data-prompt="GTA" onclick="submitPrompt(this)">GTA</button>
         </form>
         {% if user_input %}
             <div class="result">
@@ -48,10 +45,44 @@
             <div class="images">
                 <h2>Generated Images:</h2>
                 {% for image in images %}
-                    <img src="{{ url_for('static', filename='img/' + image) }}" alt="Random Image">
-                {% endfor %}
+                <div class="image-item"> <img src="{{ url_for('static', filename='img/' + image) }}" alt="Random Image">
+                    <button onclick="saveImage(this)" data-url="{{ url_for('static', filename='img/' + image) }}">Save Image</button></div>
+            {% endfor %}
+
             </div>
         {% endif %}
+        <button class="greenButton" onclick="document.getElementById('file-input').click();">Upload Image</button>
     </div>
+
+    <script src="/static/js/main.js"></script>
+    <script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.prompt-button').forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault(); // 防止默认的表单提交
+            let userInput = this.getAttribute('data-prompt');
+            document.getElementById('userInput').value = userInput; // 设置隐藏字段的值
+            document.getElementById('promptForm').submit(); // 提交表单
+        });
+    });
+});
+        function submitPrompt(button) {
+            var userInput = button.getAttribute('data-prompt');
+            document.getElementById('userInput').value = userInput;
+            document.getElementById('promptForm').submit();
+        }
+
+        function saveImage(button) {
+             var imageUrl = button.getAttribute('data-url'); // 从按钮的 data-url 属性获取图片 URL
+             var link = document.createElement('a');
+            link.href = imageUrl;
+            link.download = imageUrl.split('/').pop(); // 从 URL 提取文件名作为下载名称
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+}
+
+    </script>
 </body>
 </html>
