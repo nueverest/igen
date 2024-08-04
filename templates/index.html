@@ -3,18 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask App</title>
+    <title>iGen</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <style>
+        .logo {
+            vertical-align: center; /* Aligns the logo vertically in the middle of the text */
+            justify-content: space-between;
+            height: 80px; /* Adjust the height as needed */
+            margin-right: 30px;
+        }
+        h1 {
+            display: flex;
+            align-items: center;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>iGen Playground</h1>
+        <h1><img src="static/logo.png" alt="My Website Logo", class="logo">iGen Playground</h1>
         <form method="POST" id="promptForm">
             <input type="hidden" name="user_input" id="userInput">
             <button type="button" class="prompt-button" data-prompt="Mystical forest night scene" onclick="submitPrompt(this)">Mystical Forest Night Scene</button>
             <button type="button" class="prompt-button" data-prompt="Futuristic city skyline" onclick="submitPrompt(this)">Futuristic City Skyline</button>
             <button type="button" class="prompt-button" data-prompt="Underwater coral reef landscape" onclick="submitPrompt(this)">Underwater Coral Reef</button>
             <button type="button" class="prompt-button" data-prompt="Ancient castle at sunset" onclick="submitPrompt(this)">Ancient Castle at Sunset</button>
+            <button type="button" class="prompt-button" data-prompt="League of Legends" onclick="submitPrompt(this)">League of Legends</button>
+            <button type="button" class="prompt-button" data-prompt="World of Warcraft" onclick="submitPrompt(this)">World of Warcraft</button>
+            <button type="button" class="prompt-button" data-prompt="Star Wars" onclick="submitPrompt(this)">Star Wars</button>
+            <button type="button" class="prompt-button" data-prompt="Fornite" onclick="submitPrompt(this)">Fornite</button>
+            <button type="button" class="prompt-button" data-prompt="Minecraft" onclick="submitPrompt(this)">Minecraft</button>
+            <button type="button" class="prompt-button" data-prompt="GTA" onclick="submitPrompt(this)">GTA</button>
         </form>
         {% if user_input %}
             <div class="result">
