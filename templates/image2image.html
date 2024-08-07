@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Choose a style and upload your photo</h1>
+        <form method="POST" action="/image2image" enctype="multipart/form-data">
+            <input type="radio" id="star_war" name="theme" value="star_war">
+            <label for="html">Star Wars theme</label><br>
+            <input type="radio" id="disney" name="theme" value="disney">
+            <label for="css">Disney cartoon theme</label><br>
+            <label for="star_wars"> Star Wars theme </label>
+            <input type="file" name="file">
+            <input type="submit" value="Upload"></form>
+        </form>
+        {% if images %}
+            <div class="images">
+                <h2>Before        --        After</h2>
+                {% for image in images %}
+                    <img src="{{ url_for('static', filename='img/' + image) }}" alt="Random Image">
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
